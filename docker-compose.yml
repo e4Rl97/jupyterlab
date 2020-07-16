@@ -1,0 +1,17 @@
+version: "3"
+services:
+  jupyterlab:
+    build:
+      context: .
+      dockerfile: "Dockerfile"
+    user: root
+    container_name: con_jupyterlab
+    image: jupyterlab
+    ports:
+      - "8888:8888"
+    volumes:
+      - "/Users/yoshi/Documents/DataScience/jupyter:/home/jovyan/work"
+    environment:
+      GRANT_SUDO: "yes"
+      TZ: Asia/Tokyo
+    command: start.sh jupyter lab --NotebookApp.token="sha1:f41257796445:f53a4d63826971de44a55cf7acdff1baeef6b126"
