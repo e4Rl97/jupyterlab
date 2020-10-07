@@ -21,3 +21,10 @@ RUN echo '{"theme":"JupyterLab Dark"}' > \
 # 行番号表示
 RUN echo '{"codeCellConfig": {"lineNumbers": true}}' > \
   /home/jovyan/.jupyter/lab/user-settings/@jupyterlab/notebook-extension/tracker.jupyterlab-settings
+
+## 日本語を使用可能にする
+RUN curl -L  "https://moji.or.jp/wp-content/ipafont/IPAexfont/IPAexfont00401.zip" > font.zip
+RUN unzip font.zip
+RUN cp IPAexfont00401/ipaexg.ttf /opt/conda/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/ipaexg.ttf
+RUN echo "font.family : IPAexGothic" >>  /opt/conda/lib/python3.8/site-packages/matplotlib/mpl-data/matplotlibrc
+RUN rm -r ./.cache
